@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Task Manager</title>
+        <script src="https://cdn.tailwindcss.com"></script> <!--Tailwind css helps use css inside class, shouldn't use in production, in production always make separate css file-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/styles/new.css"> <!--ejs files ke path me we never mention public becuase in index.js we already mentioned that hamare static files will be in public folder-->
+    </head>
+    <body>
+        <div class="main w-full min-h-screen bg-zinc-900">
+            <div class="px-10 pt-5">
+                <h1 class="text-4xl font-bold text-white">Task Manager</h1>
+            </div>
+
+            <div class="form px-10 pb-10 pt-5 text-white">
+                <form action="/create" method="post">
+                    <input class="block w-full rounded-md outline-none px-5 py-2 bg-zinc-800" type="text" placeholder="Input goes here" name="title">
+                    <textarea class="block w-full rounded-md outline-none mt-2 px-5 py-2 resize-none bg-zinc-800" placeholder="Write your task description" name="description"></textarea>
+                    <input class="mt-2 bg-zinc-200 px-5 py-2 rounded-md text-black" type="submit" value="Create Task">
+                </form>
+            </div>
+            <div class="task flex gap-3 flex-wrap px-10 pt-5">
+                <% if(files.length > 0){ %>
+                    <%  files.forEach(function(val){ %>
+                        <div class="task min-w-72 px-3 py-4 bg-zinc-800 rounded-md">
+                            <h1 class="text-white text-3xl tracking-tighter"><%= val %></h1>
+                            <div class="flex w-full justify-between items-centre mt-3">
+                                <a class="text-blue-500 inline-block" href="/file/<%= val %>">Read more</a>
+                                <a class="text-zinc-600" href="/edit/<%= val%>">edit</a>
+                            </div>
+                        </div> 
+                    <% }) %>
+                <% } else{ %>
+                    <h3 class="text-zinc-600">No Tasks Yet</h3>
+                <% } %> <!-- ejs files me dynamic cheeze iss bracket se access hoti hai -->
+            </div>
+        </div>
+    </body>
+</html>

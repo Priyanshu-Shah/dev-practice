@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Edit</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <div class="main w-full min-h-screen bg-zinc-900 p-10 text-white">
+            <a class="text-blue-400 inline-block mb-5" href="/">Home</a>
+
+            <!-- Form to edit the file name -->
+            <form action="/edit1" method="post" class="mb-10">
+                <!-- Label for the previous name -->
+                <label class="block text-lg mb-2">Previous Name:</label>
+                <input class="block text-zinc-400 w-full rounded-md outline-none px-5 py-2 bg-zinc-800 mb-4" type="text" name="prevname" value="<%= filename %>" readonly>
+                
+                <!-- Label for the new name -->
+                <label class="block text-lg mb-2">New Name:</label>
+                <input class="block w-full rounded-md outline-none px-5 py-2 bg-zinc-800 mb-4" type="text" name="newname" placeholder="Enter new name" value="<%= filename %>">
+                
+                <input class="mt-2 bg-zinc-200 px-5 py-2 rounded-md text-black" type="submit" value="Rename">
+            </form>
+
+            <!-- Form to edit the file description -->
+            <form action="/edit2" method="post">
+                <!-- Hidden input to pass the filename (prevname) to the server -->
+                <input type="hidden" name="prevname" value="<%= filename %>">
+
+                <!-- Label for the previous description -->
+                <label class="block text-lg mb-2">Previous Description:</label>
+                <input class="block text-zinc-400 w-full rounded-md outline-none px-5 py-2 bg-zinc-800 mb-4" type="text" value="<%= filedata %>" readonly>
+                
+                <!-- Label for the new description -->
+                <label class="block text-lg mb-2">New Description:</label>
+                <input class="block w-full rounded-md outline-none px-5 py-2 bg-zinc-800 mb-4" type="text" name="newdesc" placeholder="Enter new description" value="<%= filedata %>">
+                
+                <input class="mt-2 bg-zinc-200 px-5 py-2 rounded-md text-black" type="submit" value="Change">
+            </form>
+        </div>
+    </body>
+</html>
